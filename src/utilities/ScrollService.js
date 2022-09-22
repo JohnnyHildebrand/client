@@ -1,8 +1,8 @@
-import {TOTAL_SCREEN} from './commonUtilities';
+import {TOTAL_SCREENS} from './commonUtilities';
 import {Subject} from 'rxjs';
 
-export default class scrollService{
-    static scrollHandler =new scrollService();
+export default class ScrollService{
+    static scrollHandler =new ScrollService();
 
     static currentScreenBroadCaster =new Subject()
     static currentScreenFadeIn = new  Subject()
@@ -25,7 +25,7 @@ export default class scrollService{
     isElementInView =(elem, type)=>{
         let rec = elem.getBoundingClientRect();
         let elementTop = rec.top;
-        let elementBottem =rec.Bottom;
+        let elementBottom =rec.Bottom;
 
         let partiallyVisible = elementTop < window.innerHeight && elementBottom >=0;
         let completelyVisible = elementTop >= 0 && elementBottom<= window.innerHeight;
@@ -42,9 +42,9 @@ export default class scrollService{
    };
 
    checkCurrentScreenUnderViewport = (event)=>{
-    if (!event || object.keys(event).length < 1)
+    if (!event || Object.keys(event).length < 1)
     return;
-    for (let screen of TOTAL_SCREEN){
+    for (let screen of TOTAL_SCREENS){
         let screenFromDom = document.getElementById(screen.screen_name);
         if (!screenFromDom)
         continue;
