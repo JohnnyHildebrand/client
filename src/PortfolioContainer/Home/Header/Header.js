@@ -51,7 +51,7 @@ export default function Header() {
   };
 
   return (
-    <div className="header-options"
+    <div className="header-container"
         onClick={() => setShowHeaderOptions(!showHeaderOptions)}
       >
         <div className="header-parent">
