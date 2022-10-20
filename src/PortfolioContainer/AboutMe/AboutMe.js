@@ -28,7 +28,7 @@ export default function AboutMe(props) {
     },
   };
 
-  const renderHighlight = () => {
+  const renderHighlights = () => {
     return Screen_Constants.highlights.bullets.map((value, i) => (
       <div className="highlight" key={i}>
         <div className="highlight-blob"></div>
@@ -50,10 +50,13 @@ export default function AboutMe(props) {
               <div className="highlight-heading">
                 <span>{Screen_Constants.highlights.heading}</span>
               </div>
-              {renderHighlight()}
+              {renderHighlights()}
             </div>
             <div className="about-me-options">
-              <button className="btn primary-btn">Hire Me</button>
+              <button 
+              className="btn primary-btn"
+              
+              >Hire Me</button>
               <a
                 href="Resume\Johnny Hildebrand  Updated Resume 2022.pdf"
                 download="Resume Johnny Hildebrand  Updated Resume 2022.pdf"
