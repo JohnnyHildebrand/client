@@ -56,9 +56,9 @@
     .profile-picture-background{
         height: 92%;
         width: 92%;
+        border-radius: 50%;
         background-image: url('../../../assets/Home/Self_Portrait_layer_2.png');
         background-size: cover;
-        border-radius: 50%;
         background-repeat: no-repeat;
         background-position: center;
     }
@@ -86,7 +86,7 @@
    }
    .profile-options .btn{
     width: 120px;
-    padding: 11px;
+    padding: 11px 0;
     z-index: 700;
    }
  }
@@ -130,7 +130,7 @@
       margin-top: -90px;
     }
     .profile-details{
-        width: 90%;
+        width: 95%;
     }
  }
 

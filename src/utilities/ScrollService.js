@@ -3,7 +3,6 @@ import {Subject} from 'rxjs';
 
 export default class ScrollService{
     static scrollHandler =new ScrollService();
-
     static currentScreenBroadCaster =new Subject()
     static currentScreenFadeIn = new  Subject()
 
@@ -12,13 +11,13 @@ export default class ScrollService{
     }
     scrollToHireMe= ()=>{
         let  contactMeScreen = document.getElementById("Contact Me")
-            if (contactMeScreen) return;
+            if (!contactMeScreen) return;
             contactMeScreen.scrollIntoView({behavior: "smooth"})
 
         }
     scrollToHome= ()=>{
         let  homeScreen = document.getElementById("Home")
-        if (homeScreen) return;
+        if (!homeScreen) return;
         homeScreen.scrollIntoView({behavior: "smooth"})
     }
 
@@ -28,20 +27,20 @@ export default class ScrollService{
         let elementBottom =rec.Bottom;
 
         let partiallyVisible = elementTop < window.innerHeight && elementBottom >=0;
-        let completelyVisible = elementTop >= 0 && elementBottom<= window.innerHeight;
+        let completelyVisible = elementTop >= 0 && elementBottom <= window.innerHeight;
 
         switch (type) {
             case "partial":
                 return partiallyVisible;
 
                 case "complete":
-                    return completelyVisible
+                    return completelyVisible;
                     default:
-                        return false
+                        return false;
         }
    };
 
-   checkCurrentScreenUnderViewport = (event)=>{
+   checkCurrentScreenUnderViewport = (event) =>{
     if (!event || Object.keys(event).length < 1)
     return;
     for (let screen of TOTAL_SCREENS){

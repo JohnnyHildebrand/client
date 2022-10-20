@@ -11,14 +11,14 @@ export default function ScreenHeading(props) {
         <div className="screen-sub-heading">
           <span>{props.subHeading}</span>
         </div>
-      ) : ( <div></div>
+      ) : (
+         <div></div>
       )}
       <div className="heading-seperator">
-        <div className="seperator-line">
+        <div className="seperator-line"></div>
           <div className="seperator-blob">
             <div></div>
-          </div>
-        </div>
+          </div>       
       </div>
     </div>
   );

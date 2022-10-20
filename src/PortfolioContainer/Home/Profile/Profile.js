@@ -1,5 +1,6 @@
 import React from "react";
 import Typical from "react-typical";
+import ScrollService from "../../../utilities/ScrollService";
 import "./Profile.css";
 
 export default function Profile() {
@@ -73,12 +74,13 @@ export default function Profile() {
                   ]}
                 />
               </h1>
+              </span>
               <span className="profile-role-tagline">
                 Knack with building webpages, APIs and applications with front
                 end or back end operations.
-              </span>
-            </span>
+              </span>            
           </div>
+          
           <div className="profile-options">
             <button className="btn primary-btn"> Hire Me </button>
             <a

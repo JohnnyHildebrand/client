@@ -3,12 +3,12 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    margin: 0 0 50ox 0;
+    margin: 0 0 50px 0;
 }
 
 .screen-sub-heading{
     letter-spacing: 3px;
-    margin: 8 0 18px 0 ;
+    margin: 8 0 10px 0 ;
     font-size: 12px;
     color: var(--black);
     }
@@ -37,7 +37,7 @@
         display: flex;
         justify-content: center;
     }
-    .seperator-blob div{
+    .seperator-blob div {
       width: 35px;
       border-radius: 10px;
       background-color: var(--dark-orange);
