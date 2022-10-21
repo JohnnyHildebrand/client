@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ScreenHeading from "../../utilities/ScreenHeading/ScreenHeading";
 import ScrollService from "../../utilities/ScrollService";
 import Animations from "../../utilities/Animations";
+import "./Resume.css";
 
 const Resume = (props) => {
   /* STATES */
@@ -13,10 +14,9 @@ const Resume = (props) => {
     if (screen.fadeInScreen !== props.id) return;
     Animations.animations.fadeInScreen(props.id);
   };
-  const fadeInSubscription = ScrollService.currentScreenFadeIn.subscribe(
-    fadeInScreenHandler
-  );
-
+  const fadeInSubscription =
+    ScrollService.currentScreenFadeIn.subscribe(fadeInScreenHandler);
+/* REUSABLE MINOR COMPONENTS */
   const ResumeHeading = (props) => {
     return (
       <div className="resume-heading">
@@ -42,8 +42,8 @@ const Resume = (props) => {
   };
   /* STATIC RESUME DATA FOR THE LABELS*/
   const resumeBullets = [
-    { label: "Education", logoSrc: "education.svg" },
-    { label: "Work History", logoSrc: "work-history.svg" },
+    { label: "Education", logoSrc:"education.svg"},
+    { label: "Work History", logoSrc:"work-history.svg"},
     { label: "Programming Skills", logoSrc: "programming-skills.svg" },
     { label: "Projects", logoSrc: "projects.svg" },
     { label: "Interests", logoSrc: "interests.svg" },
@@ -201,13 +201,13 @@ const Resume = (props) => {
         }
         key={index}
       >
-      {/* Backtick `  Black tick also know as template literals have multiple usage other than just enclosing a string.Black ticks come with features like placeholder , interpolation,multiline string. The back-tick allows you to use string templating.. Used in var str = `text with a $` */}
+        {/* Backtick `  Black tick also know as template literals have multiple usage other than just enclosing a string.Black ticks come with features like placeholder , interpolation,multiline string. The back-tick allows you to use string templating.. Used in var str = `text with a $` */}
         <img
           className="bullet-logo"
-            src={require(`../../assets/Resume/${bullet.logoSrc}` ).default}
-             alt="no internet connection"
+          src={require (`../../assets/Resume/${bullet.logoSrc}`)}
+          alt="no internet connection"
         />
-              <span className="bullet-label">{bullet.label}</span>
+        <span className="bullet-label">{bullet.label}</span>
       </div>
     ));
   };
