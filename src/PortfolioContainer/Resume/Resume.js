@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ScreenHeading from "../../utilities/ScreenHeading/ScreenHeading";
 import ScrollService from "../../utilities/ScrollService";
 import Animations from "../../utilities/Animations";
 
+const Resume = (props) => {
+  /* STATES */
 
-export default function Resume(props) {
   const [selectedBulletIndex, setSelectedBulletIndex] = useState(0);
-  const [carousalOffsetStyle, setCarousalOffSetStyle] = useState({});
+  const [carousalOffsetStyle, setCarousalOffsetStyle] = useState({});
 
   let fadeInScreenHandler = (screen) => {
-    if (screen.fadeScreen !== props.id) return;
+    if (screen.fadeInScreen !== props.id) return;
     Animations.animations.fadeInScreen(props.id);
   };
   const fadeInSubscription = ScrollService.currentScreenFadeIn.subscribe(
@@ -19,8 +20,8 @@ export default function Resume(props) {
   const ResumeHeading = (props) => {
     return (
       <div className="resume-heading">
-        <div className="resume-main-heading"></div>
-        <div className="heading-bullet">
+        <div className="resume-main-heading">
+          <div className="heading-bullet"></div>
           <span>{props.heading ? props.heading : ""}</span>
           {props.fromDate && props.toDate ? (
             <div className="heading-date">
@@ -29,24 +30,23 @@ export default function Resume(props) {
           ) : (
             <div></div>
           )}
-
-          <div className="resume-sub-heading">
-            <span>{props.subHeading ? props.subHeading : ""}</span>
-          </div>
-          <div className="resume-heading-description">
-            <span>{props.description ? props.description : ""}</span>
-          </div>
+        </div>
+        <div className="resume-sub-heading">
+          <span>{props.subHeading ? props.subHeading : ""}</span>
+        </div>
+        <div className="resume-heading-description">
+          <span>{props.description ? props.description : ""}</span>
         </div>
       </div>
-    )
+    );
   };
-
+  /* STATIC RESUME DATA FOR THE LABELS*/
   const resumeBullets = [
-    { label: "Education", logoScr: "education.svg" },
-    { label: "Work History", logoScr: "work-history.svg" },
-    { label: "Programming Skills", logoScr: "programming-skills.svg" },
-    { label: "Projects", logoScr: "projects.svg" },
-    { label: "Interests", logoScr: "interests.svg" },
+    { label: "Education", logoSrc: "education.svg" },
+    { label: "Work History", logoSrc: "work-history.svg" },
+    { label: "Programming Skills", logoSrc: "programming-skills.svg" },
+    { label: "Projects", logoSrc: "projects.svg" },
+    { label: "Interests", logoSrc: "interests.svg" },
   ];
   const programmingSkillsDetails = [
     { skill: "JavaScript", ratingPercentage: 25 },
@@ -61,7 +61,7 @@ export default function Resume(props) {
     { skill: "CSS", ratingPercentage: 25 },
   ];
 
-  const projectDetails = [
+  const projectsDetails = [
     {
       title: "Personal Portfolio Website",
       duration: { from: "2021", toDate: "2022" },
@@ -148,25 +148,27 @@ export default function Resume(props) {
           <div className="skill-percentage">
             <div
               style={{ width: skill.ratingPercentage + "%" }}
-              className="active-percentage"
+              className="active-percentage-bar"
             ></div>
           </div>
         </div>
       ))}
     </div>,
-
+    /* PROJECTS*/
     <div className="resume-screen-container" key="projects">
-      {projectDetails.map((projectDetails, index) => (
+      {projectsDetails.map((projectsDetails, index) => (
         <ResumeHeading
           key={index}
-          heading={projectDetails.title}
-          subHeading={projectDetails.subHeading}
-          description={projectDetails.description}
-          fromDate={projectDetails.duration.fromDate}
-          toDate={projectDetails.duration.toDate}
+          heading={projectsDetails.title}
+          subHeading={projectsDetails.subHeading}
+          description={projectsDetails.description}
+          fromDate={projectsDetails.duration.fromDate}
+          toDate={projectsDetails.duration.toDate}
         />
       ))}
     </div>,
+
+    /*INTERESTS*/
     <div className="resume-screen-container" key="interests">
       <ResumeHeading
         heading="Teaching"
@@ -182,13 +184,12 @@ export default function Resume(props) {
       />
     </div>,
   ];
-
   const handleCarousal = (index) => {
     let offsetHeight = 360;
     let newCarousalOffset = {
       style: { transform: "translateY(" + index * offsetHeight * -1 + "px)" },
     };
-    setCarousalOffSetStyle(newCarousalOffset);
+    setCarousalOffsetStyle(newCarousalOffset);
     setSelectedBulletIndex(index);
   };
   const getBullets = () => {
@@ -200,11 +201,13 @@ export default function Resume(props) {
         }
         key={index}
       >
+      {/* Backtick `  Black tick also know as template literals have multiple usage other than just enclosing a string.Black ticks come with features like placeholder , interpolation,multiline string. The back-tick allows you to use string templating.. Used in var str = `text with a $` */}
         <img
           className="bullet-logo"
-        //   src={require ("../../assets/Resume/${logo.logoSrc}").default}
-          alt="no internet connection"
+            src={require(`../../assets/Resume/${bullet.logoSrc}` ).default}
+             alt="no internet connection"
         />
+              <span className="bullet-label">{bullet.label}</span>
       </div>
     ));
   };
@@ -212,29 +215,28 @@ export default function Resume(props) {
   const getResumeScreens = () => {
     return (
       <div
-       style={carousalOffsetStyle.style} 
-       className="resume-details-carousal"
-       >
+        style={carousalOffsetStyle.style}
+        className="resume-details-carousal"
+      >
         {resumeDetails.map((ResumeDetail) => ResumeDetail)}
       </div>
     );
   };
-return (
-  <div 
-  className="resume-container screen-container"
-  id={props.id || ""}>
-    <div className="resume-content">
-      <ScreenHeading title={"Resume"} subHeading={"My formal Bio Details"} />
-      <div className="resume-card">
-        <div className="resume-bullets">
-          <div className="bullet-container">
-          <div className="bullet-icons"></div>
-          <div className="bullets">{getBullets()}</div>
+  return (
+    <div className="resume-container screen-container" id={props.id || ""}>
+      <div className="resume-content">
+        <ScreenHeading title={"Resume"} subHeading={"My formal Bio Details"} />
+        <div className="resume-card">
+          <div className="resume-bullets">
+            <div className="bullet-container">
+              <div className="bullet-icons"></div>
+              <div className="bullets">{getBullets()}</div>
+            </div>
+          </div>
+          <div className="resume-bullet-details">{getResumeScreens()}</div>
         </div>
       </div>
-      <div className="resume-bullet-details"> {getResumeScreens()} </div>
     </div>
-  </div>
-  </div>
-);
+  );
 };
+export default Resume;
