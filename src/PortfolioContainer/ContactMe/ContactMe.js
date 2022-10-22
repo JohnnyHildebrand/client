@@ -31,6 +31,10 @@ export default function ContactMe(props) {
         setMessage(e.target.value);
    };
 
+   const submitForm = (e)=>{
+    e.preventDefault();
+   }
+
   return (
     <div className="main-container" id={props.id || ""}>
       <ScreenHeading subHeading={"Let's keep in touch"} title={"Contact Me"} />
@@ -38,7 +42,9 @@ export default function ContactMe(props) {
         <div className="col">
           {/* Contact me and email */}
           <h2 className="title">
-            <Typical loop={Infinity} steps={["Get In Touch 📧", 1000]} />
+            <Typical loop={Infinity} steps={[
+                "Get In Touch 📧", 1000,
+              "Social Media Links 🔗", 1000,]} />
           </h2>
           {/* Social media links */}
           <a
@@ -82,7 +88,7 @@ export default function ContactMe(props) {
                 <h4>Send Your Email Here!</h4>
                     <img src={imgBack} alt='image not found'/>
                     </div>
-                    <form>
+                    <form onSubmit={submitForm}>
                         <p>{banner}</p>
                             <label htmlFor='name'> Name </label>
                                 <input type='text'
