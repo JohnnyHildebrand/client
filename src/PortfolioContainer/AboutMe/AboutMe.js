@@ -5,12 +5,13 @@ import Animations from "../../utilities/Animations";
 import "./AboutMe.css";
 
 export default function AboutMe(props) {
+
   let fadeInScreenHandler = (screen) => {
     if (screen.fadeInScreen !== props.id) return;
     Animations.animations.fadeInScreen(props.id);
   };
-  const fadeInSubscription = ScrollService.currentScreenFadeIn.subscribe(   fadeInScreenHandler
-  );
+      const fadeInSubscription = 
+         ScrollService.currentScreenFadeIn.subscribe(fadeInScreenHandler);
 
   const Screen_Constants = {
     description: " Add Blurb about work here",
