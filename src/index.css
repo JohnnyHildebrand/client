@@ -114,6 +114,7 @@ body ::-webkit-scrollbar-thumb {
 
 .highlighted-btn {
   color: var(--white);
+
   font-size: 12px;
   background-color: #ff5823;
 }
@@ -132,4 +133,3 @@ body ::-webkit-scrollbar-thumb {
   transform: translateY(80px);
   transition: all 0.8s ease;
 }
-

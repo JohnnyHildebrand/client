@@ -4,13 +4,12 @@ import Footer from './Footer/Footer';
 import Header from './Header/Header';
 import './Home.css';
 
-export default function Home() {
+export default function Home(props) {
   return (
-    <div className="home-container">
+    <div className="home-container" id={props.id || ""}>
        <Header/>
         <Profile/>
-        <Footer/>
-       
+        <Footer/>       
     </div>
   );
 }

@@ -7,19 +7,20 @@ import ScreenHeading from "../../utilities/ScreenHeading/ScreenHeading";
 import ScrollService from "../../utilities/ScrollService";
 import Animations from "../../utilities/Animations";
 import "./Testimonial.css";
-import lady from "../../img/Testimonial/lady.png";
-import mike from "../../img/Testimonial/mike.png";
-import man from "../../img/Testimonial/man.png";
-import shape from "../../img/Testimonial/shape-bg.png";
+import lady from "../../../src/img/Testimonial/lady.png";
+import mike from "../../../src/img/Testimonial/mike.png";
+import man from "../../../src/img/Testimonial/man.png";
+import shape from "../../../src/img/Testimonial/shape-bg.png";
 
 export default function Testimonial(props) {
   let fadeInScreenHandler = (screen) => {
     if (screen.fadeInScreen !== props.id) return;
     Animations.animations.fadeInScreen(props.id);
   };
-  const fadeInSubscription = ScrollService.currentScreenFadeIn.subscribe(
-    fadeInScreenHandler
-  );
+
+  const fadeInSubscription =
+    ScrollService.currentScreenFadeIn.subscribe(fadeInScreenHandler);
+
   const options = {
     loop: true,
     margin: 0,
@@ -29,7 +30,7 @@ export default function Testimonial(props) {
     dots: true,
     autoplay: true,
     smartSpeed: 1000,
-    reponsive: {
+    responsive: {
       0: {
         items: 1,
       },
@@ -48,7 +49,8 @@ export default function Testimonial(props) {
         title={"Testimonial"}
         subHeading={"What myclients say about me "}
       />
-      <section className="testimonial-section" Id={props.id || ""}>
+       {/* fade-in */}
+      <section className="testimonial-section fade-in" Id={props.id || ""}>
         <div className="container">
           <div className="row">
             <OwlCarousel
@@ -164,6 +166,9 @@ export default function Testimonial(props) {
           </div>
         </div>
       </section>
+      <div className="footer-image">
+        <img src={shape} alt="Phot0 not responding" />
+      </div>
     </div>
   );
 }

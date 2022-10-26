@@ -6,17 +6,18 @@ import "./Resume.css";
 
 const Resume = (props) => {
   /* STATES */
-
   const [selectedBulletIndex, setSelectedBulletIndex] = useState(0);
   const [carousalOffsetStyle, setCarousalOffsetStyle] = useState({});
 
   let fadeInScreenHandler = (screen) => {
     if (screen.fadeInScreen !== props.id) return;
+
     Animations.animations.fadeInScreen(props.id);
   };
   const fadeInSubscription =
     ScrollService.currentScreenFadeIn.subscribe(fadeInScreenHandler);
-/* REUSABLE MINOR COMPONENTS */
+
+  /* REUSABLE MINOR COMPONENTS */
   const ResumeHeading = (props) => {
     return (
       <div className="resume-heading">
@@ -40,6 +41,7 @@ const Resume = (props) => {
       </div>
     );
   };
+  
   /* STATIC RESUME DATA FOR THE LABELS*/
   const resumeBullets = [
     { label: "Education", logoSrc:"education.svg"},
@@ -140,7 +142,7 @@ const Resume = (props) => {
     </div>,
 
     /* PROGRAMMING SKILLS */
-    <div className="resume-description" key="programming-skills">
+    <div className="resume-screen-container" key="programming-skills">
       {programmingSkillsDetails.map((skill, index) => (
         <div className="skill-parent" key={index}>
           <div className="heading-bullet"></div>
@@ -222,8 +224,20 @@ const Resume = (props) => {
       </div>
     );
   };
+
+  useEffect(() => {
+    return () => {
+      /* UNSUBSCRIBE THE SUBSCRIPTIONS */
+      fadeInSubscription.unsubscribe();
+    };
+  }, [fadeInSubscription]);
   return (
-    <div className="resume-container screen-container" id={props.id || ""}>
+    <div
+     // fade-in
+      className="resume-container screen-container fade-in"
+      id={props.id || ""}
+      >
+
       <div className="resume-content">
         <ScreenHeading title={"Resume"} subHeading={"My formal Bio Details"} />
         <div className="resume-card">

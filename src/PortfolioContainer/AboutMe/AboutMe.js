@@ -1,17 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ScreenHeading from "../../utilities/ScreenHeading/ScreenHeading";
 import ScrollService from "../../utilities/ScrollService";
 import Animations from "../../utilities/Animations";
 import "./AboutMe.css";
 
 export default function AboutMe(props) {
-
   let fadeInScreenHandler = (screen) => {
     if (screen.fadeInScreen !== props.id) return;
+    
     Animations.animations.fadeInScreen(props.id);
   };
-      const fadeInSubscription = 
-         ScrollService.currentScreenFadeIn.subscribe(fadeInScreenHandler);
+  const fadeInSubscription =
+  ScrollService.currentScreenFadeIn.subscribe(fadeInScreenHandler);
 
   const Screen_Constants = {
     description: " Add Blurb about work here",
@@ -37,7 +37,9 @@ export default function AboutMe(props) {
     ));
   };
   return (
-    <div className="about-me-container screen-container " id={props.id || ""}>
+     // fade-in
+    <div className="about-me-container screen-container fade-in " 
+    id={props.id || ""}>
       <div className="about-me-parent">
         <ScreenHeading title={"About Me"} subHeading={"Why Choose Me?"} />
         <div className="about-me-card">
@@ -55,7 +57,7 @@ export default function AboutMe(props) {
             <div className="about-me-options">
               <button 
               className="btn primary-btn"
-              
+              onClick={() => ScrollService.scrollHandler.scrollToHireMe()}
               >Hire Me</button>
               <a
                 href="Resume\Johnny Hildebrand  Updated Resume 2022.pdf"
