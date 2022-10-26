@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import Typical from "react-typical";
+import axios from "axios";
+import { toast } from "react-toastify";
 import imgBack from "../../images/mailz.jpeg";
 import load1 from "../../images/load2.gif";
 import ScreenHeading from "../../utilities/ScreenHeading/ScreenHeading";
 import ScrollService from "../../utilities/ScrollService";
 import Animations from "../../utilities/Animations";
-import "../ContactMe/ContactMe.css";
-import axios from "axios";
-import { toast } from "react-toastify";
+import Footer from"../footer/Footer";
+import "../ContactMe/ContactMe.css"
+
 
 export default function ContactMe(props) {
   let fadeInScreenHandler = (screen) => {
@@ -41,8 +43,8 @@ export default function ContactMe(props) {
         email,
         message,
       };
-      setBool(true);
-      const res = await axios.post("/contact", data);
+    setBool(true);
+      const res = await axios.post(`/contact`, data);
       if (name.length === 0 || email.length === 0 || message.length === 0) {
         setBanner(res.data.msg);
         toast.error(res.data.msg);
@@ -51,6 +53,10 @@ export default function ContactMe(props) {
         setBanner(res.data.msg);
         toast.success(res.data.msg);
         setBool(false);
+
+        setName("");
+        setEmail("");
+        setMessage("");
       }
     } catch (error) {
       console.log(error);
@@ -139,6 +145,7 @@ export default function ContactMe(props) {
           </form>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }
